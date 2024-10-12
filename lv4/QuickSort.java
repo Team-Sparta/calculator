@@ -9,6 +9,10 @@ public class QuickSort {
 
     public static void sort(List<Double> list, int low, int high) {
         if (low < high) {
+            int pivotIndex = medianOfThree(list, low, high);
+            // Move pivot to the end
+            Collections.swap(list, pivotIndex, high);
+
             // Find the partition index
             int pi = partition(list, low, high);
 
@@ -29,7 +33,6 @@ public class QuickSort {
             // If current element is smaller than or equal to pivot
             if (list.get(j) <= pivot) {
                 i++;
-
                 // Swap list.get(i) and list.get(j)
                 Collections.swap(list, i, j);
             }
@@ -40,6 +43,15 @@ public class QuickSort {
 
         return i + 1;
     }
+
+    private static int medianOfThree(List<Double> list, int low, int high) {
+        int mid = low + (high - low) / 2;
+        if (list.get(low) > list.get(mid)) Collections.swap(list, low, mid);
+        if (list.get(low) > list.get(high)) Collections.swap(list, low, high);
+        if (list.get(mid) > list.get(high)) Collections.swap(list, mid, high);
+        return mid;
+    }
+
 
     // Utility method to print a list
     public static void printList(List<Double> list) {
