@@ -10,66 +10,28 @@ import java.util.stream.Collectors;
 
 public class ArithmeticCalculator extends Calculator {
 
-    List<Double> resultList = new ArrayList<>();
-    boolean isSorted = false;
-
-    public <T extends Number> Double calculate(T firstNumber, T secondNumber, OperatorType operator) throws ZeroDivisionException {
-        Double result = switch (operator) {
-            case ADDITION -> firstNumber.doubleValue() + secondNumber.doubleValue();
-            case SUBTRACT -> firstNumber.doubleValue() - secondNumber.doubleValue();
-            case MULTIPLY -> firstNumber.doubleValue() * secondNumber.doubleValue();
-            case DIVIDE -> {
-                if (secondNumber.doubleValue() == 0) {
-                    throw new ZeroDivisionException();
-                }
-                yield firstNumber.doubleValue() / secondNumber.doubleValue();
-            }
-            case MODULUS -> {
-                if (secondNumber.doubleValue() == 0) {
-                    throw new ZeroDivisionException();
-                }
-                yield firstNumber.doubleValue() % secondNumber.doubleValue();
-            }
-        };
-        resultList.add(result);
-        return result;
+    @Override
+    public <T extends Number> double add(T firstNumber, T secondNumber) {
+        return firstNumber.doubleValue() + secondNumber.doubleValue();
     }
 
-    public Double calculateWithOneCommand(String command) throws BadInputException {
-        Double result;
-        try {
-            JShell js = JShell.builder().build();
-            result = Double.parseDouble(js.eval(command).get(0).value());
-            resultList.add(result);
-        } catch (Exception e) {
-            throw new BadInputException("수식");
-        }
-        return result;
+    @Override
+    public <T extends Number> double subtract(T firstNumber, T secondNumber) {
+        return firstNumber.doubleValue() - secondNumber.doubleValue();
     }
 
-    public List<Double> getResultsGreaterThan(double threshold) {
-        return resultList.stream()
-                .filter(result -> result > threshold)
-                .toList();
+    @Override
+    public <T extends Number> double multiply(T firstNumber, T secondNumber) {
+        return firstNumber.doubleValue() * secondNumber.doubleValue();
     }
 
-    // getter for result
-    public List<Double> getResult() {
-        return resultList;
+    @Override
+    public <T extends Number> double divide(T firstNumber, T secondNumber) {
+        return firstNumber.doubleValue() / secondNumber.doubleValue();
     }
 
-    // setter for result
-    public void setResult(List<Double> result) {
-        this.resultList = result;
-    }
-
-    // remove last element in the resultList
-    public void removeResult() {
-        this.resultList.remove(resultList.size() - 1);
-    }
-
-    // sort the resultList
-    public void sortResultList(boolean isDescending) {
-        QuickSort.sort(this.resultList, 0, this.resultList.size() - 1, isDescending);
+    @Override
+    public <T extends Number> double modulo(T firstNumber, T secondNumber) {
+        return firstNumber.doubleValue() % secondNumber.doubleValue();
     }
 }

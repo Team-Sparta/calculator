@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class App {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final ArithmeticCalculator calculator = new ArithmeticCalculator();
+    private static final BitWiseCalculator calculator = new BitWiseCalculator();
 
     public static void main(String[] args) {
         start();
@@ -16,16 +16,17 @@ public class App {
 
         while (true) {
             try {
-//                double num1 = getInput("첫 번째 숫자를 입력하세요: ", Parser::parseNum);
-//                double num2 = getInput("두 번째 숫자를 입력하세요: ", Parser::parseNum);
-//                OperatorType operator = getInput("사칙연산 기호를 입력하세요: ",
-//                        prompt -> Parser.parseOperator(prompt.charAt(0)));
-//                Double result = calculator.calculate(num1, num2, operator);
+                double num1 = getInput("첫 번째 숫자를 입력하세요: ", Parser::parseNum);
+                double num2 = getInput("두 번째 숫자를 입력하세요: ", Parser::parseNum);
+                OperatorType operator = getInput("사칙연산 기호를 입력하세요: ",
+                        prompt -> Parser.parseOperator(prompt.charAt(0)));
+                Double result = calculator.calculate(num1, num2, operator);
 
-                System.out.print("수식을 한줄에 입력해주세요: ");
-                String expression = scanner.nextLine();
-                Double result = calculator.calculateWithOneCommand(expression);
-                System.out.print("결과: " + result);
+//                System.out.print("수식을 한줄에 입력해주세요: ");
+//                String expression = scanner.nextLine();
+//                Double result = calculator.calculateWithOneCommand(expression);
+
+                System.out.println("결과: " + result);
 
                 if (continueCalculation()) {
                     break;
