@@ -1,12 +1,4 @@
-package mainHomework.lv4;
-
-import jdk.jshell.JShell;
-import week04.homework.BadInputException;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+package mainHomework.lv4.calculator;
 
 public class ArithmeticCalculator extends Calculator {
 

@@ -1,4 +1,4 @@
-package mainHomework.lv4;
+package mainHomework.lv4.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;

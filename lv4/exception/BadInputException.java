@@ -1,4 +1,4 @@
-package mainHomework.lv4;
+package mainHomework.lv4.exception;
 
 public class BadInputException extends Exception {
     public BadInputException(String type) {

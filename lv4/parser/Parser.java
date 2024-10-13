@@ -1,4 +1,7 @@
-package mainHomework.lv4;
+package mainHomework.lv4.parser;
+
+import mainHomework.lv4.enums.OperatorType;
+import mainHomework.lv4.exception.BadInputException;
 
 import java.util.regex.Pattern;
 

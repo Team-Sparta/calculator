@@ -1,6 +1,11 @@
-package mainHomework.lv4;
+package mainHomework.lv4.calculator;
 
 import jdk.jshell.JShell;
+import mainHomework.lv4.enums.OperatorType;
+import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.algorithm.BinarySearch;
+import mainHomework.lv4.algorithm.QuickSort;
+import mainHomework.lv4.exception.ZeroDivisionException;
 import week04.homework.BadInputException;
 
 import java.util.ArrayList;
@@ -9,9 +14,10 @@ import java.util.List;
 public abstract class Calculator {
     List<Double> resultList = new ArrayList<>();
     SortedType sortedType = SortedType.UNSORTED;
+    final static ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
 
-    public <T extends Number> Double calculate(T firstNumber, T secondNumber, OperatorType operator) throws ZeroDivisionException {
-        Double result = switch (operator) {
+    public <T extends Number> double calculate(T firstNumber, T secondNumber, OperatorType operator) throws ZeroDivisionException {
+        double result = switch (operator) {
             case ADDITION -> add(firstNumber, secondNumber);
             case SUBTRACT -> subtract(firstNumber, secondNumber);
             case MULTIPLY -> multiply(firstNumber, secondNumber);
@@ -46,8 +52,10 @@ public abstract class Calculator {
     public Double calculateWithOneCommand(String command) throws week04.homework.BadInputException {
         Double result;
         try {
-            JShell js = JShell.builder().build();
-            result = Double.parseDouble(js.eval(command).get(0).value());
+//            JShell js = JShell.builder().build();
+//            result = Double.parseDouble(js.eval(command).get(0).value());
+
+            result = expressionEvaluator.evaluate(command);
             resultList.add(result);
         } catch (Exception e) {
             throw new BadInputException("수식");
@@ -86,8 +94,21 @@ public abstract class Calculator {
     }
 
     // sort the resultList
-    public void sortResultList(boolean isDescending) {
-        sortedType = isDescending ? SortedType.DESCENDING : SortedType.ASCENDING;
-        QuickSort.sort(this.resultList, 0, this.resultList.size() - 1, isDescending);
+    public void sortResultList(String response) {
+        switch (response) {
+            case "N":
+                sortedType = SortedType.UNSORTED;
+                break;
+            case "A":
+                sortedType = SortedType.ASCENDING;
+                break;
+            case "D":
+                sortedType = SortedType.DESCENDING;
+                break;
+            default:
+                System.out.println("잘못된 값을 입력했습니다");
+                break;
+        }
+        QuickSort.sort(this.resultList, 0, this.resultList.size() - 1, sortedType);
     }
 }

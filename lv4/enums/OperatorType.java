@@ -1,4 +1,6 @@
-package mainHomework.lv4;
+package mainHomework.lv4.enums;
+
+import mainHomework.lv4.exception.BadInputException;
 
 import java.util.Arrays;
 

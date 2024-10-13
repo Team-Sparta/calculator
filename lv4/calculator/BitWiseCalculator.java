@@ -1,10 +1,10 @@
-package mainHomework.lv4;
+package mainHomework.lv4.calculator;
 
 public class BitWiseCalculator extends Calculator {
     @Override
     public <T extends Number> double add(T firstNumber, T secondNumber) {
-        double a = firstNumber.doubleValue();
-        double b = secondNumber.doubleValue();
+        double a = (double) firstNumber;
+        double b = (double) secondNumber;
 
         // Split into integer and fractional parts
         long intPartA = (long) a;
@@ -13,7 +13,7 @@ public class BitWiseCalculator extends Calculator {
         double fractionPartB = b - intPartB;
 
         // Calculate integer part using bitwise
-        long intSum = 0;
+        long intSum;
         while (intPartB != 0) {
             long carry = intPartA & intPartB; // Calculate carry bits
             intPartA = intPartA ^ intPartB;   // Sum bits without carrying
@@ -35,8 +35,8 @@ public class BitWiseCalculator extends Calculator {
 
     @Override
     public <T extends Number> double multiply(T firstNumber, T secondNumber) {
-        double a = firstNumber.doubleValue();
-        double b = secondNumber.doubleValue();
+        double a = (double) firstNumber;
+        double b = (double) secondNumber;
 
         // Split into integer and fractional parts
         long intPartA = (long) a;
@@ -86,6 +86,12 @@ public class BitWiseCalculator extends Calculator {
         double finalQuotient = negativeResult ? -quotient : quotient;
 
         // Calculate the fractional part using a more precise method
+        double fractionalPart = getFractionalPart(dividend, divisor);
+
+        return finalQuotient + fractionalPart; // Return combined result
+    }
+
+    private static double getFractionalPart(double dividend, double divisor) {
         double fractionalPart = 0.0;
         double fractionNumerator = dividend; // Start with the remaining dividend
 
@@ -103,8 +109,7 @@ public class BitWiseCalculator extends Calculator {
             fractionalPart += fractionalDigit * precision; // Add to the fractional part
             precision /= 10; // Decrease precision for next decimal place
         }
-
-        return finalQuotient + fractionalPart; // Return combined result
+        return fractionalPart;
     }
 
     @Override

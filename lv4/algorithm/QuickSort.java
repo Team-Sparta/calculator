@@ -1,4 +1,6 @@
-package mainHomework.lv4;
+package mainHomework.lv4.algorithm;
+
+import mainHomework.lv4.enums.SortedType;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -8,34 +10,36 @@ public class QuickSort {
 
     // Overloaded method that provides default value for 'desc' as false
     public static void sort(List<Double> list, int low, int high) {
-        sort(list, low, high, false);  // Default value for 'desc' is false (ascending order)
+        sort(list, low, high, SortedType.ASCENDING);  // Default value for 'desc' is false (ascending order)
     }
 
     // Main sort method with 'desc' parameter
-    public static void sort(List<Double> list, int low, int high, boolean desc) {
-        while (low < high) {
-            int pivotIndex = medianOfThree(list, low, high);
-            Collections.swap(list, pivotIndex, high); // Move pivot to the end
+    public static void sort(List<Double> list, int low, int high, SortedType sortedType) {
+        if (sortedType != SortedType.UNSORTED) {
+            while (low < high) {
+                int pivotIndex = medianOfThree(list, low, high);
+                Collections.swap(list, pivotIndex, high); // Move pivot to the end
 
-            int pi = partition(list, low, high, desc); // Partition based on 'desc'
+                int pi = partition(list, low, high, sortedType); // Partition based on 'sortedType'
 
-            // Recursively sort the smaller partition and loop on the larger one to reduce recursion depth
-            if (pi - low < high - pi) {
-                sort(list, low, pi - 1, desc);  // Sort left part (smaller one)
-                low = pi + 1;                  // Continue sorting right part (larger one) in the loop
-            } else {
-                sort(list, pi + 1, high, desc); // Sort right part (smaller one)
-                high = pi - 1;                 // Continue sorting left part (larger one) in the loop
+                // Recursively sort the smaller partition and loop on the larger one to reduce recursion depth
+                if (pi - low < high - pi) {
+                    sort(list, low, pi - 1, sortedType);  // Sort left part (smaller one)
+                    low = pi + 1;                  // Continue sorting right part (larger one) in the loop
+                } else {
+                    sort(list, pi + 1, high, sortedType); // Sort right part (smaller one)
+                    high = pi - 1;                 // Continue sorting left part (larger one) in the loop
+                }
             }
         }
     }
 
-    private static int partition(List<Double> list, int low, int high, boolean desc) {
+    private static int partition(List<Double> list, int low, int high, SortedType sortedType) {
         Double pivot = list.get(high);  // Choose the rightmost element as pivot
         int i = low;
 
         for (int j = low; j < high; j++) {
-            if ((desc && list.get(j) >= pivot) || (!desc && list.get(j) <= pivot)) {
+            if ((sortedType == SortedType.DESCENDING && list.get(j) >= pivot) || (sortedType == SortedType.ASCENDING && list.get(j) <= pivot)) {
                 Collections.swap(list, i, j);
                 i++;
             }
@@ -72,7 +76,7 @@ public class QuickSort {
         printList(list);
 
         // Sort in descending order
-        sort(list, 0, list.size() - 1, true);
+        sort(list, 0, list.size() - 1, SortedType.ASCENDING);
         System.out.println("Sorted list (descending order):");
         printList(list);
     }

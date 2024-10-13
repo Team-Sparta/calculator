@@ -1,4 +1,4 @@
-package mainHomework.lv4;
+package mainHomework.lv4.exception;
 
 public class ZeroDivisionException extends Exception {
     public ZeroDivisionException() {
