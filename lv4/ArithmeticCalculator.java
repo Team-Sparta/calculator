@@ -1,12 +1,17 @@
 package mainHomework.lv4;
 
+import jdk.jshell.JShell;
+import week04.homework.BadInputException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ArithmeticCalculator {
+public class ArithmeticCalculator extends Calculator {
 
     List<Double> resultList = new ArrayList<>();
+    boolean isSorted = false;
 
     public <T extends Number> Double calculate(T firstNumber, T secondNumber, OperatorType operator) throws ZeroDivisionException {
         Double result = switch (operator) {
@@ -27,7 +32,18 @@ public class ArithmeticCalculator {
             }
         };
         resultList.add(result);
-        resultList.sort(Double::compareTo);
+        return result;
+    }
+
+    public Double calculateWithOneCommand(String command) throws BadInputException {
+        Double result;
+        try {
+            JShell js = JShell.builder().build();
+            result = Double.parseDouble(js.eval(command).get(0).value());
+            resultList.add(result);
+        } catch (Exception e) {
+            throw new BadInputException("수식");
+        }
         return result;
     }
 
