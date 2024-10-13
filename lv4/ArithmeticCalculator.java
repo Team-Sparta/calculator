@@ -8,13 +8,23 @@ public class ArithmeticCalculator {
 
     List<Double> resultList = new ArrayList<>();
 
-    public <T extends Number> Double calculate(T firstNumber, T secondNumber, OperatorType operator) {
+    public <T extends Number> Double calculate(T firstNumber, T secondNumber, OperatorType operator) throws ZeroDivisionException {
         Double result = switch (operator) {
             case ADDITION -> firstNumber.doubleValue() + secondNumber.doubleValue();
             case SUBTRACT -> firstNumber.doubleValue() - secondNumber.doubleValue();
             case MULTIPLY -> firstNumber.doubleValue() * secondNumber.doubleValue();
-            case DIVIDE -> firstNumber.doubleValue() / secondNumber.doubleValue();
-            case MODULUS -> firstNumber.doubleValue() % secondNumber.doubleValue();
+            case DIVIDE -> {
+                if (secondNumber.doubleValue() == 0) {
+                    throw new ZeroDivisionException();
+                }
+                yield firstNumber.doubleValue() / secondNumber.doubleValue();
+            }
+            case MODULUS -> {
+                if (secondNumber.doubleValue() == 0) {
+                    throw new ZeroDivisionException();
+                }
+                yield firstNumber.doubleValue() % secondNumber.doubleValue();
+            }
         };
         resultList.add(result);
         resultList.sort(Double::compareTo);
@@ -24,7 +34,7 @@ public class ArithmeticCalculator {
     public List<Double> getResultsGreaterThan(double threshold) {
         return resultList.stream()
                 .filter(result -> result > threshold)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     // getter for result
@@ -43,7 +53,7 @@ public class ArithmeticCalculator {
     }
 
     // sort the resultList
-    public void sortResultList() {
-        QuickSort.sort(this.resultList, 0, this.resultList.size());
+    public void sortResultList(boolean isDescending) {
+        QuickSort.sort(this.resultList, 0, this.resultList.size() - 1, isDescending);
     }
 }

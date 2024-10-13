@@ -7,23 +7,11 @@ public class Parser {
     private static final String NUMBER_REG = "^[+-]?([0-9]+(\\.[0-9]+)?|\\.[0-9]+)$";
 
 
-    public static double parseFirstNum(String firstInput) throws BadInputException {
-        if (!Pattern.matches(NUMBER_REG, firstInput)) {
+    public static double parseNum(String numInput) throws BadInputException {
+        if (!Pattern.matches(NUMBER_REG, numInput)) {
             throw new BadInputException("숫자");
         }
-        return Double.parseDouble(firstInput);
-    }
-
-    public static double parseSecondNum(String secondInput) throws BadInputException, ZeroDivisionException {
-        if (!Pattern.matches(NUMBER_REG, secondInput)) {
-            throw new BadInputException("숫자");
-        }
-
-        double secondNumber = Double.parseDouble(secondInput);
-        if (secondNumber == 0) {
-            throw new ZeroDivisionException();
-        }
-        return secondNumber;
+        return Double.parseDouble(numInput);
     }
 
     public static OperatorType parseOperator(char operationInput) throws BadInputException {
