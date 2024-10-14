@@ -1,9 +1,12 @@
 package mainHomework.lv4.dataStructure;
 
+import mainHomework.lv4.algorithm.MergeSort;
 import mainHomework.lv4.algorithm.QuickSort;
 import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.enums.SortingAlgorithmType;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,54 +16,58 @@ public class HashSetStructure extends DataStructure {
 
     @Override
     public int size() {
-        return hashSet.size();
+        return this.hashSet.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return hashSet.isEmpty();
+        return this.hashSet.isEmpty();
     }
 
     @Override
     public boolean contains(Double value) {
-        return hashSet.contains(value);
+        return this.hashSet.contains(value);
     }
 
     @Override
     public void add(Double value) {
-        hashSet.add(value);
+        this.hashSet.add(value);
     }
 
     @Override
     public void removeLastElement() {
         Double lastElement = null;
-        for (Double aDouble : hashSet) {
+        for (Double aDouble : this.hashSet) {
             lastElement = aDouble;
         }
         if (lastElement != null) {
-            hashSet.remove(lastElement);
+            this.hashSet.remove(lastElement);
         }
     }
 
     @Override
     public void clear() {
-        hashSet.clear();
+        this.hashSet.clear();
     }
 
     @Override
-    public void sort(SortedType sortedType) {
-        List<Double> sortedArray = QuickSort.sort(hashSet.stream().toList(), 0, hashSet.size(), sortedType);
-        hashSet = new HashSet<>(sortedArray);
+    public void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType) {
+        List<Double> tempList = this.hashSet.stream().toList();
+        switch (sortingAlgorithmType) {
+            case MERGE -> MergeSort.sort(tempList, 0, this.hashSet.size());
+            case QUICK -> QuickSort.sort(tempList, 0, this.hashSet.size(), sortedType);
+        }
+        this.hashSet = new HashSet<>(tempList);
     }
 
     @Override
     public void print() {
-        System.out.println("HashSetStructure: " + hashSet);
+        System.out.println("HashSetStructure: " + this.hashSet);
     }
 
     @Override
     public List<Double> getResultsGreaterThan(double threshold) {
-        return hashSet.stream().filter(result -> result > threshold)
+        return this.hashSet.stream().filter(result -> result > threshold)
                 .toList();
     }
 }

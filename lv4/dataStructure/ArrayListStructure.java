@@ -1,8 +1,10 @@
 package mainHomework.lv4.dataStructure;
 
 import mainHomework.lv4.algorithm.BinarySearch;
+import mainHomework.lv4.algorithm.MergeSort;
 import mainHomework.lv4.algorithm.QuickSort;
 import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.enums.SortingAlgorithmType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,47 +15,51 @@ public class ArrayListStructure extends DataStructure {
 
     @Override
     public int size() {
-        return arrayList.size();
+        return this.arrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return arrayList.isEmpty();
+        return this.arrayList.isEmpty();
     }
 
     @Override
     public boolean contains(Double target) {
-        return BinarySearch.search(arrayList, target) != -1;
+        return BinarySearch.search(this.arrayList, target) != -1;
     }
 
     @Override
     public void add(Double value) {
-        arrayList.add(value);
+        this.arrayList.add(value);
     }
 
     @Override
     public void removeLastElement() {
-        arrayList.remove(arrayList.size() - 1);
+        this.arrayList.remove(this.arrayList.size() - 1);
     }
 
     @Override
     public void clear() {
-        arrayList.clear();
+        this.arrayList.clear();
     }
 
     @Override
-    public void sort(SortedType sortedType) {
-        QuickSort.sort(arrayList, 0, arrayList.size() - 1, sortedType);
+    public void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType) {
+        if (sortingAlgorithmType == SortingAlgorithmType.QUICK) {
+            QuickSort.sort(this.arrayList, 0, this.arrayList.size() - 1, sortedType);
+        } else {
+            MergeSort.sort(this.arrayList, 0, this.arrayList.size());
+        }
     }
 
     @Override
     public void print() {
-        System.out.println(arrayList);
+        System.out.println(this.arrayList);
     }
 
     @Override
     public List<Double> getResultsGreaterThan(double threshold) {
-        return arrayList.stream()
+        return this.arrayList.stream()
                 .filter(result -> result > threshold)
                 .toList();
     }

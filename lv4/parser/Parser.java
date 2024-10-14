@@ -3,6 +3,7 @@ package mainHomework.lv4.parser;
 import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.OperatorType;
 import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.enums.SortingAlgorithmType;
 import mainHomework.lv4.exception.BadInputException;
 
 import java.util.InputMismatchException;
@@ -13,6 +14,7 @@ public class Parser {
     private static final String NUMBER_REG = "^[+-]?([0-9]+(\\.[0-9]+)?|\\.[0-9]+)$";
     private static final String SAD_REG = "^[SAsAdD]$";
     private static final String DS_REG = "^[lsLQ]$";
+    private static final String SA_REG = "^[qQmM]$";
     private static final String YES_NO_REG = "^[YyNn]$";
 
 
@@ -37,11 +39,18 @@ public class Parser {
         return DataStructureType.fromChar(input);
     }
 
-    public static SortedType parseSortingCommand(char input) throws InputMismatchException {
+    public static SortedType parseSortedType(char input) throws InputMismatchException {
         if (!Pattern.matches(SAD_REG, String.valueOf(input))) {
             throw new InputMismatchException(input + "은 유효하지 않은 문자입니다.");
         }
         return SortedType.fromChar(input);
+    }
+
+    public static SortingAlgorithmType parseSortingAlgorithmType(char input) throws InputMismatchException {
+        if (!Pattern.matches(SA_REG, String.valueOf(input))) {
+            throw new InputMismatchException(input + "은 유효하지 않은 문자입니다.");
+        }
+        return SortingAlgorithmType.fromChar(input);
     }
 
 }

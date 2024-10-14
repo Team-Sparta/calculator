@@ -15,7 +15,7 @@ public class QuickSort {
 
     // Main sort method with 'desc' parameter
     public static List<Double> sort(List<Double> list, int low, int high, SortedType sortedType) {
-        if (sortedType != SortedType.UNSORTED) {
+        if (sortedType != SortedType.SKIP) {
             while (low < high) {
                 int pivotIndex = medianOfThree(list, low, high);
                 Collections.swap(list, pivotIndex, high); // Move pivot to the end

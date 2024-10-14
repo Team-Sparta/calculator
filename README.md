@@ -9,7 +9,7 @@
 - Stream
 - Exception
 ### Lv4:
--  Sorting Algorithm (Quick Sort)
+-  Sorting Algorithm (Merge Sort, Quick Sort)
 -  Search Algorithm (Binary Search)
 -  Evaluating a mathematical expression with one command line
 -  Bitwise Operations

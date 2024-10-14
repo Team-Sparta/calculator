@@ -2,6 +2,7 @@ package mainHomework.lv4.dataStructure;
 
 import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.enums.SortingAlgorithmType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class LinkedListStructure extends DataStructure {
     // Check if list contains a specific value
     @Override
     public boolean contains(Double target) {
-        Node current = head;
+        Node current = this.head;
         while (current != null) {
             if (current.data.equals(target)) {
                 return true;
@@ -47,10 +48,10 @@ public class LinkedListStructure extends DataStructure {
     @Override
     public void add(Double data) {
         Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
+        if (this.head == null) {
+            this.head = newNode;
         } else {
-            Node current = head;
+            Node current = this.head;
             while (current.next != null) {
                 current = current.next;
             }
@@ -61,14 +62,14 @@ public class LinkedListStructure extends DataStructure {
 
     @Override
     public void removeLastElement() {
-        if (head == null) {
+        if (this.head == null) {
             throw new NoSuchElementException("List is empty.");
         }
 
-        if (head.next == null) {
-            head = null;
+        if (this.head.next == null) {
+            this.head = null;
         } else {
-            Node current = head;
+            Node current = this.head;
             while (current.next.next != null) {
                 current = current.next;
             }
@@ -79,15 +80,15 @@ public class LinkedListStructure extends DataStructure {
 
     @Override
     public void clear() {
-        head = null;
+        this.head = null;
     }
 
     @Override
-    public void sort(SortedType sortedType) {
-        if (sortedType == SortedType.UNSORTED || head == null || head.next == null) {
+    public void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType) {
+        if (sortedType == SortedType.SKIP || this.head == null || this.head.next == null) {
             return;
         }
-        Node current = head;
+        Node current = this.head;
 
         // Perform selection sort on the linked list
         while (current != null) {
@@ -126,7 +127,7 @@ public class LinkedListStructure extends DataStructure {
 
     @Override
     public void print() {
-        Node current = head;
+        Node current = this.head;
         while (current != null) {
             System.out.print(current.data + " -> ");
             current = current.next;
@@ -146,7 +147,7 @@ public class LinkedListStructure extends DataStructure {
             throw new IndexOutOfBoundsException("Index out of bounds.");
         }
 
-        Node current = head;
+        Node current = this.head;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
@@ -158,7 +159,7 @@ public class LinkedListStructure extends DataStructure {
     // Convert list to array
     public Double[] toArray() {
         Double[] array = new Double[size];
-        Node current = head;
+        Node current = this.head;
         for (int i = 0; i < size; i++) {
             array[i] = current.data;
             current = current.next;

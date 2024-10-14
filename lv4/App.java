@@ -5,6 +5,7 @@ import mainHomework.lv4.calculator.BitWiseCalculator;
 import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.OperatorType;
 import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.enums.SortingAlgorithmType;
 import mainHomework.lv4.exception.BadInputException;
 import mainHomework.lv4.parser.Parser;
 
@@ -16,7 +17,7 @@ public class App {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static ArithmeticCalculator calculator;
-//    private static final BitWiseCalculator calculator = new BitWiseCalculator();
+//  private static final BitWiseCalculator calculator = new BitWiseCalculator();
 
     public static void main(String[] args) {
         try {
@@ -28,7 +29,7 @@ public class App {
 
     public static void start() throws BadInputException, InputMismatchException {
 
-        handleDataStructureType();
+        init();
 
         while (true) {
             try {
@@ -71,20 +72,24 @@ public class App {
         return "n".equalsIgnoreCase(scanner.nextLine());
     }
 
-    private static void handleDataStructureType() throws InputMismatchException, BadInputException {
+    private static void init() throws InputMismatchException, BadInputException {
         System.out.println("걀과값등을 저장할 자료구조를 선택하세요.");
         DataStructureType dataStructureType = getInput("l: List, S: Set, L: LinkedList, Q: Queue: ",
                 prompt -> Parser.parseDataStructureType(prompt.charAt(0)));
         calculator = new ArithmeticCalculator(dataStructureType);
-
     }
 
     private static void handleSortResults() throws InputMismatchException, BadInputException {
         if (calculator.dataStructure.size() > 1) {
             System.out.println("결과값들을 정렬하시겠습니까?");
             SortedType sortedType = getInput("S: 스킵, A: 작은 숫자부터 정렬, D: 큰 숫자 부터 정렬: ",
-                    prompt -> Parser.parseSortingCommand(prompt.charAt(0)));
-            calculator.dataStructure.sort(sortedType);
+                    prompt -> Parser.parseSortedType(prompt.charAt(0)));
+            if (sortedType != SortedType.SKIP) {
+                SortingAlgorithmType sortingAlgorithmType = getInput("M: Merge Sort, Q: Quick Sort: ",
+                        prompt -> Parser.parseSortingAlgorithmType(prompt.charAt(0)));
+                calculator.dataStructure.sort(sortedType, sortingAlgorithmType);
+            }
+
         }
         displayAllResults();
     }
