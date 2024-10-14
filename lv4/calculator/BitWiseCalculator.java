@@ -1,6 +1,12 @@
 package mainHomework.lv4.calculator;
 
+import mainHomework.lv4.enums.DataStructureType;
+
 public class BitWiseCalculator extends Calculator {
+    public BitWiseCalculator(DataStructureType dataStructureType) {
+        super(dataStructureType);
+    }
+
     @Override
     public <T extends Number> double add(T firstNumber, T secondNumber) {
         double a = (double) firstNumber;

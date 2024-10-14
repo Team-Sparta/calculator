@@ -1,6 +1,7 @@
 package mainHomework.lv4.algorithm;
 
 import java.util.ArrayList;
+import java.util.Collections; // Import for sorting
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +11,8 @@ public class BinarySearch {
         int left = 0;
         int right = arr.size() - 1;
         while (left <= right) {
-            int mid = (left + right) / 2;
+//            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             if (Objects.equals(arr.get(mid), target)) {
                 return mid;
             } else if (arr.get(mid) < target) {
@@ -30,6 +32,13 @@ public class BinarySearch {
         arr.add(33.0);
         arr.add(93.0);
         arr.add(42.0);
+        arr.add(12.0);
+
+        // Sort the array before performing binary search
+        Collections.sort(arr);
+
+        // Print the sorted array for reference
+        System.out.println("Sorted array: " + arr);
 
         int result = search(arr, 5.0);
 

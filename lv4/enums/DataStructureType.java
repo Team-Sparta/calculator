@@ -3,16 +3,16 @@ package mainHomework.lv4.enums;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public enum SortedType {
-    UNSORTED('S'), ASCENDING('A'), DESCENDING('D');
+public enum DataStructureType {
+    LIST('l'), SET('S'), LINKEDLIST('L'), QUEUE('Q');
 
     private final char symbol;
 
-    SortedType(char symbol) {
+    DataStructureType(char symbol) {
         this.symbol = symbol;
     }
 
-    public static SortedType fromChar(char symbol) throws InputMismatchException {
+    public static DataStructureType fromChar(char symbol) throws InputMismatchException {
         return Arrays.stream(values())
                 .filter(op -> op.symbol == symbol)
                 .findFirst()

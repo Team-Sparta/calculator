@@ -1,20 +1,24 @@
 package mainHomework.lv4.calculator;
 
-import jdk.jshell.JShell;
+import mainHomework.lv4.dataStructure.*;
+import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.OperatorType;
-import mainHomework.lv4.enums.SortedType;
-import mainHomework.lv4.algorithm.BinarySearch;
-import mainHomework.lv4.algorithm.QuickSort;
 import mainHomework.lv4.exception.ZeroDivisionException;
 import week04.homework.BadInputException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Calculator {
-    List<Double> resultList = new ArrayList<>();
-    SortedType sortedType = SortedType.UNSORTED;
     final static ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
+    public DataStructure dataStructure;
+
+    public Calculator(DataStructureType dataStructureType) {
+        this.dataStructure = switch (dataStructureType) {
+            case LIST -> new ArrayListStructure();
+            case SET -> new HashSetStructure();
+            case LINKEDLIST -> new LinkedListStructure();
+            case QUEUE -> new QueueStructure();
+        };
+    }
+
 
     public <T extends Number> double calculate(T firstNumber, T secondNumber, OperatorType operator) throws ZeroDivisionException {
         double result = switch (operator) {
@@ -34,7 +38,7 @@ public abstract class Calculator {
                 yield modulo(firstNumber, secondNumber);
             }
         };
-        resultList.add(result);
+        dataStructure.add(result);
         return result;
     }
 
@@ -56,59 +60,10 @@ public abstract class Calculator {
 //            result = Double.parseDouble(js.eval(command).get(0).value());
 
             result = expressionEvaluator.evaluate(command);
-            resultList.add(result);
+            this.dataStructure.add(result);
         } catch (Exception e) {
             throw new BadInputException("수식");
         }
         return result;
-    }
-
-    public List<Double> getResultsGreaterThan(double threshold) {
-        return resultList.stream()
-                .filter(result -> result > threshold)
-                .toList();
-    }
-
-    // getter for result
-    public List<Double> getResult() {
-        return resultList;
-    }
-
-    // setter for result
-    public void setResult(List<Double> result) {
-        this.resultList = result;
-    }
-
-    // remove last element in the resultList
-    public void removeResult() {
-        this.resultList.remove(resultList.size() - 1);
-    }
-
-    // search the resultList
-    public boolean searchResultList(Double target) {
-        if (sortedType == SortedType.UNSORTED) {
-            return resultList.contains(target);
-        } else {
-            return BinarySearch.search(resultList, target) != -1;
-        }
-    }
-
-    // sort the resultList
-    public void sortResultList(String response) {
-        switch (response) {
-            case "N":
-                sortedType = SortedType.UNSORTED;
-                break;
-            case "A":
-                sortedType = SortedType.ASCENDING;
-                break;
-            case "D":
-                sortedType = SortedType.DESCENDING;
-                break;
-            default:
-                System.out.println("잘못된 값을 입력했습니다");
-                break;
-        }
-        QuickSort.sort(this.resultList, 0, this.resultList.size() - 1, sortedType);
     }
 }

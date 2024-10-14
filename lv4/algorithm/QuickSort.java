@@ -14,7 +14,7 @@ public class QuickSort {
     }
 
     // Main sort method with 'desc' parameter
-    public static void sort(List<Double> list, int low, int high, SortedType sortedType) {
+    public static List<Double> sort(List<Double> list, int low, int high, SortedType sortedType) {
         if (sortedType != SortedType.UNSORTED) {
             while (low < high) {
                 int pivotIndex = medianOfThree(list, low, high);
@@ -32,6 +32,7 @@ public class QuickSort {
                 }
             }
         }
+        return list;
     }
 
     private static int partition(List<Double> list, int low, int high, SortedType sortedType) {

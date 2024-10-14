@@ -87,7 +87,7 @@ public class ExpressionEvaluator {
         while (!stack.isEmpty()) {
             postfix.add(stack.pop());
         }
-        System.out.println(postfix);
+//        System.out.println(postfix);
         return postfix;
     }
 
