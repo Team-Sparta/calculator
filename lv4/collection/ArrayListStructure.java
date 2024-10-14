@@ -1,4 +1,4 @@
-package mainHomework.lv4.dataStructure;
+package mainHomework.lv4.collection;
 
 import mainHomework.lv4.algorithm.BinarySearch;
 import mainHomework.lv4.algorithm.MergeSort;

@@ -1,6 +1,5 @@
-package mainHomework.lv4.dataStructure;
+package mainHomework.lv4.collection;
 
-import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.SortedType;
 import mainHomework.lv4.enums.SortingAlgorithmType;
 

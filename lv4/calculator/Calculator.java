@@ -1,6 +1,6 @@
 package mainHomework.lv4.calculator;
 
-import mainHomework.lv4.dataStructure.*;
+import mainHomework.lv4.collection.*;
 import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.OperatorType;
 import mainHomework.lv4.exception.ZeroDivisionException;

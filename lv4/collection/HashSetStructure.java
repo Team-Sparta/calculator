@@ -1,12 +1,10 @@
-package mainHomework.lv4.dataStructure;
+package mainHomework.lv4.collection;
 
 import mainHomework.lv4.algorithm.MergeSort;
 import mainHomework.lv4.algorithm.QuickSort;
-import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.SortedType;
 import mainHomework.lv4.enums.SortingAlgorithmType;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

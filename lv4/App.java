@@ -29,7 +29,6 @@ public class App {
 
         while (true) {
             try {
-
                 Double choice = inputHandler.getChoice("1: 수식 한줄 입력, 2: 숫자/연산자 개별 입력 [1/2]: ");
 
                 double result;
