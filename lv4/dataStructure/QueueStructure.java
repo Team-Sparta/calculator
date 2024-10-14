@@ -46,8 +46,8 @@ public class QueueStructure extends DataStructure {
     public void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType) {
         List<Double> tempList = this.queue.stream().toList();
         switch (sortingAlgorithmType) {
-            case MERGE -> MergeSort.sort(tempList, 0, this.queue.size());
-            case QUICK -> QuickSort.sort(tempList, 0, this.queue.size(), sortedType);
+            case MERGE -> MergeSort.sort(tempList, 0, this.queue.size() - 1);
+            case QUICK -> QuickSort.sort(tempList, 0, this.queue.size() - 1, sortedType);
         }
         clear();
         this.queue.addAll(tempList);

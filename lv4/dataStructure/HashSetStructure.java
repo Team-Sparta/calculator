@@ -54,8 +54,8 @@ public class HashSetStructure extends DataStructure {
     public void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType) {
         List<Double> tempList = this.hashSet.stream().toList();
         switch (sortingAlgorithmType) {
-            case MERGE -> MergeSort.sort(tempList, 0, this.hashSet.size());
-            case QUICK -> QuickSort.sort(tempList, 0, this.hashSet.size(), sortedType);
+            case MERGE -> MergeSort.sort(tempList, 0, this.hashSet.size() - 1);
+            case QUICK -> QuickSort.sort(tempList, 0, this.hashSet.size() - 1, sortedType);
         }
         this.hashSet = new HashSet<>(tempList);
     }

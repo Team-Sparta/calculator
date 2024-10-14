@@ -48,7 +48,7 @@ public class ArrayListStructure extends DataStructure {
         if (sortingAlgorithmType == SortingAlgorithmType.QUICK) {
             QuickSort.sort(this.arrayList, 0, this.arrayList.size() - 1, sortedType);
         } else {
-            MergeSort.sort(this.arrayList, 0, this.arrayList.size());
+            MergeSort.sort(this.arrayList, 0, this.arrayList.size() - 1);
         }
     }
 
