@@ -1,15 +1,15 @@
 package mainHomework.lv4.handler;
 
-import mainHomework.lv4.calculator.ArithmeticCalculator;
+import mainHomework.lv4.calculator.Calculator;
 import mainHomework.lv4.enums.SortedType;
 import mainHomework.lv4.enums.SortingAlgorithmType;
 import mainHomework.lv4.exception.BadInputException;
 
 public class PostCalculationHandler {
-    private final ArithmeticCalculator calculator;
+    private final Calculator calculator;
     private final InputHandler inputHandler;
 
-    public PostCalculationHandler(ArithmeticCalculator calculator, InputHandler inputHandler) {
+    public PostCalculationHandler(Calculator calculator, InputHandler inputHandler) {
         this.calculator = calculator;
         this.inputHandler = inputHandler;
     }

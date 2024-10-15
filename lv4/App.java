@@ -1,6 +1,6 @@
 package mainHomework.lv4;
 
-import mainHomework.lv4.calculator.ArithmeticCalculator;
+import mainHomework.lv4.calculator.Calculator;
 import mainHomework.lv4.enums.DataStructureType;
 import mainHomework.lv4.enums.OperatorType;
 import mainHomework.lv4.exception.BadInputException;
@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 
 public class App {
 
-    private static ArithmeticCalculator calculator;
+    private static Calculator calculator;
     private static final InputHandler inputHandler = new InputHandler();
     private static PostCalculationHandler postCalculationHandler;
 
@@ -30,7 +30,6 @@ public class App {
         while (true) {
             try {
                 Double choice = inputHandler.getChoice("1: 수식 한줄 입력, 2: 숫자/연산자 개별 입력 [1/2]: ");
-
                 double result;
 
                 if (choice == 2) {
@@ -62,7 +61,7 @@ public class App {
     private static void init() throws InputMismatchException, BadInputException {
         System.out.println("결과값들을 저장할 자료구조를 선택하세요.");
         DataStructureType dataStructureType = inputHandler.getDataStructureInput("l: List, S: Set, L: LinkedList, Q: Queue: ");
-        calculator = new ArithmeticCalculator(dataStructureType);
+        calculator = new Calculator(dataStructureType);
         postCalculationHandler = new PostCalculationHandler(calculator, inputHandler);
     }
 }

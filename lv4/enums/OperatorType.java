@@ -1,20 +1,23 @@
 package mainHomework.lv4.enums;
 
+import mainHomework.lv4.calculator.operator.*;
 import mainHomework.lv4.exception.BadInputException;
 
 import java.util.Arrays;
 
 public enum OperatorType {
-    ADDITION('+'),
-    SUBTRACT('-'),
-    MULTIPLY('*'),
-    DIVIDE('/'),
-    MODULUS('%');
+    ADDITION('+', new AddOperator()),
+    SUBTRACT('-', new SubtractOperator()),
+    MULTIPLY('*', new MultiplyOperator()),
+    DIVIDE('/', new DivideOperator()),
+    MODULUS('%', new ModuleOperator());
 
     private final char symbol;
+    public final Operator operator;
 
-    OperatorType(char symbol) {
+    OperatorType(char symbol, Operator operator) {
         this.symbol = symbol;
+        this.operator = operator;
     }
 
     public static OperatorType fromChar(char operator) throws BadInputException {

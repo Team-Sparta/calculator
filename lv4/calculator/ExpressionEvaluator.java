@@ -69,11 +69,11 @@ public class ExpressionEvaluator {
                 while (!stack.isEmpty() && !stack.peek().equals("(")) {
                     postfix.add(stack.pop());
                 }
-                if (!stack.isEmpty() && stack.peek().equals("(")) {
-                    stack.pop();
-                }
-                if (!stack.isEmpty() && isFunction(stack.peek())) {
-                    postfix.add(stack.pop());
+                if (!stack.isEmpty()) {
+                    String pop = stack.pop();
+                    if (isFunction(pop)) {
+                        postfix.add(pop);
+                    }
                 }
             } else if (isOperator(token)) {
                 while (!stack.isEmpty() && isOperator(stack.peek()) &&

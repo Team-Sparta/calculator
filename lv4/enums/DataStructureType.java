@@ -1,15 +1,19 @@
 package mainHomework.lv4.enums;
 
+import mainHomework.lv4.collection.*;
+
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public enum DataStructureType {
-    LIST('l'), SET('S'), LINKEDLIST('L'), QUEUE('Q');
+    LIST('l', new ArrayListStructure()), SET('S', new HashSetStructure()), LINKEDLIST('L', new LinkedListStructure()), QUEUE('Q', new QueueStructure());
 
     private final char symbol;
+    public final DataStructure dataStructure;
 
-    DataStructureType(char symbol) {
+    DataStructureType(char symbol, DataStructure dataStructure) {
         this.symbol = symbol;
+        this.dataStructure = dataStructure;
     }
 
     public static DataStructureType fromChar(char symbol) throws InputMismatchException {
