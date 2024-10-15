@@ -13,11 +13,15 @@ public enum OperatorType {
     MODULUS('%', new ModuleOperator());
 
     private final char symbol;
-    public final Operator operator;
+    private final Operator operator;
 
     OperatorType(char symbol, Operator operator) {
         this.symbol = symbol;
         this.operator = operator;
+    }
+
+    public Operator getOperator() {
+        return this.operator;
     }
 
     public static OperatorType fromChar(char operator) throws BadInputException {

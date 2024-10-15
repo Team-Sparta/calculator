@@ -4,7 +4,6 @@ import java.util.*;
 
 public class ExpressionEvaluator {
 
-
     private static final Map<String, Integer> PRECEDENCE = new HashMap<>();
 
     static {

@@ -19,14 +19,14 @@ public class PostCalculationHandler {
         handleThreshold();
         displayAllResults();
 
-        if (calculator.dataStructure.size() > 1) {
+        if (calculator.getDataStructure().size() > 1) {
             handleSortResults();
         }
     }
 
     private void handleSearchResults() throws BadInputException {
         double target = inputHandler.getDoubleInput("결과값안에서 어떤값을 찾나요? ");
-        String response = calculator.dataStructure.contains(target)
+        String response = calculator.getDataStructure().contains(target)
                 ? target + " 이 결과값안에 있습니다."
                 : target + " 을 찾을수 없습니다.";
         System.out.println(response);
@@ -34,7 +34,7 @@ public class PostCalculationHandler {
 
     private void handleThreshold() throws BadInputException {
         double threshold = inputHandler.getDoubleInput("최종 결과값들의 최소 threshold를 설정하세요: ");
-        System.out.println(threshold + "보다 큰 결과값들: " + calculator.dataStructure.getResultsGreaterThan(threshold));
+        System.out.println(threshold + "보다 큰 결과값들: " + calculator.getDataStructure().getResultsGreaterThan(threshold));
     }
 
     private void handleSortResults() throws BadInputException {
@@ -42,13 +42,13 @@ public class PostCalculationHandler {
         SortedType sortedType = inputHandler.getSortedTypeInput("S: 스킵, A: 작은 숫자부터 정렬, D: 큰 숫자 부터 정렬: ");
         if (sortedType != SortedType.SKIP) {
             SortingAlgorithmType sortingAlgorithmType = inputHandler.getSortingAlgorithmInput("M: Merge Sort, Q: Quick Sort: ");
-            calculator.dataStructure.sort(sortedType, sortingAlgorithmType);
+            calculator.getDataStructure().sort(sortedType, sortingAlgorithmType);
         }
         displayAllResults();
     }
 
     private void displayAllResults() {
         System.out.print("최종값들: ");
-        calculator.dataStructure.print();
+        calculator.getDataStructure().print();
     }
 }

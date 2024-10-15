@@ -2,10 +2,12 @@ package mainHomework.lv4.calculator.operator;
 
 public class AddOperator extends Operator {
 
+    @Override
     public <T extends Number> double arithmeticOperate(T firstNumber, T secondNumber) {
         return firstNumber.doubleValue() + secondNumber.doubleValue();
     }
 
+    @Override
     public <T extends Number> double bitwiseOperate(T firstNumber, T secondNumber) {
         double a = (double) firstNumber;
         double b = (double) secondNumber;
