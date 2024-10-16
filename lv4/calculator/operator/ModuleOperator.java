@@ -1,8 +1,8 @@
 package mainHomework.lv4.calculator.operator;
 
-import mainHomework.lv4.exception.ZeroDivisionException;
+import mainHomework.lv4.calculator.exception.ZeroDivisionException;
 
-public class ModuleOperator extends Operator {
+public class ModuleOperator implements Operator {
     final SubtractOperator subtractOperator = new SubtractOperator();
     final MultiplyOperator multiplyOperator = new MultiplyOperator();
     final DivideOperator divideOperator = new DivideOperator();

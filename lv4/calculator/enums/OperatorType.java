@@ -1,7 +1,7 @@
-package mainHomework.lv4.enums;
+package mainHomework.lv4.calculator.enums;
 
 import mainHomework.lv4.calculator.operator.*;
-import mainHomework.lv4.exception.BadInputException;
+import mainHomework.lv4.calculator.exception.BadInputException;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 package mainHomework.lv4.calculator.operator;
 
-public class SubtractOperator extends Operator {
+public class SubtractOperator implements Operator {
     final AddOperator addOperator = new AddOperator();
 
     @Override

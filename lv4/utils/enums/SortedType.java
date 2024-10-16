@@ -1,18 +1,18 @@
-package mainHomework.lv4.enums;
+package mainHomework.lv4.utils.enums;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public enum SortingAlgorithmType {
-    MERGE('M'), QUICK('Q');
+public enum SortedType {
+    SKIP('S'), ASCENDING('A'), DESCENDING('D');
 
     private final char symbol;
 
-    SortingAlgorithmType(char symbol) {
+    SortedType(char symbol) {
         this.symbol = symbol;
     }
 
-    public static SortingAlgorithmType fromChar(char symbol) throws InputMismatchException {
+    public static SortedType fromChar(char symbol) throws InputMismatchException {
         return Arrays.stream(values())
                 .filter(op -> op.symbol == symbol)
                 .findFirst()

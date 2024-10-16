@@ -1,10 +1,10 @@
-package mainHomework.lv4.collection;
+package mainHomework.lv4.utils.collection;
 
-import mainHomework.lv4.algorithm.BinarySearch;
-import mainHomework.lv4.algorithm.MergeSort;
-import mainHomework.lv4.algorithm.QuickSort;
-import mainHomework.lv4.enums.SortedType;
-import mainHomework.lv4.enums.SortingAlgorithmType;
+import mainHomework.lv4.utils.algorithm.searching.BinarySearch;
+import mainHomework.lv4.utils.algorithm.sorting.MergeSort;
+import mainHomework.lv4.utils.algorithm.sorting.QuickSort;
+import mainHomework.lv4.utils.enums.SortedType;
+import mainHomework.lv4.utils.enums.SortingAlgorithmType;
 
 import java.util.ArrayList;
 import java.util.List;

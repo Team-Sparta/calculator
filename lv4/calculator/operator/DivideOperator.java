@@ -1,8 +1,8 @@
 package mainHomework.lv4.calculator.operator;
 
-import mainHomework.lv4.exception.ZeroDivisionException;
+import mainHomework.lv4.calculator.exception.ZeroDivisionException;
 
-public class DivideOperator extends Operator {
+public class DivideOperator implements Operator {
 
     @Override
     public <T extends Number> double arithmeticOperate(T firstNumber, T secondNumber) throws ZeroDivisionException {

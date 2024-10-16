@@ -1,9 +1,9 @@
-package mainHomework.lv4.handler;
+package mainHomework.lv4.calculator.handler;
 
 import mainHomework.lv4.calculator.Calculator;
-import mainHomework.lv4.enums.SortedType;
-import mainHomework.lv4.enums.SortingAlgorithmType;
-import mainHomework.lv4.exception.BadInputException;
+import mainHomework.lv4.utils.enums.SortedType;
+import mainHomework.lv4.utils.enums.SortingAlgorithmType;
+import mainHomework.lv4.calculator.exception.BadInputException;
 
 public class PostCalculationHandler {
     private final Calculator calculator;

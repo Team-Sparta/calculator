@@ -1,10 +1,10 @@
-package mainHomework.lv4.parser;
+package mainHomework.lv4.calculator.parser;
 
-import mainHomework.lv4.enums.DataStructureType;
-import mainHomework.lv4.enums.OperatorType;
-import mainHomework.lv4.enums.SortedType;
-import mainHomework.lv4.enums.SortingAlgorithmType;
-import mainHomework.lv4.exception.BadInputException;
+import mainHomework.lv4.utils.enums.DataStructureType;
+import mainHomework.lv4.calculator.enums.OperatorType;
+import mainHomework.lv4.utils.enums.SortedType;
+import mainHomework.lv4.utils.enums.SortingAlgorithmType;
+import mainHomework.lv4.calculator.exception.BadInputException;
 
 import java.util.InputMismatchException;
 import java.util.regex.Pattern;

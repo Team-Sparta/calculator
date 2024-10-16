@@ -1,4 +1,4 @@
-package mainHomework.lv4.algorithm;
+package mainHomework.lv4.utils.algorithm.searching;
 
 import java.util.ArrayList;
 import java.util.Collections; // Import for sorting

@@ -1,6 +1,6 @@
 package mainHomework.lv4.calculator.operator;
 
-public class AddOperator extends Operator {
+public class AddOperator implements Operator {
 
     @Override
     public <T extends Number> double arithmeticOperate(T firstNumber, T secondNumber) {

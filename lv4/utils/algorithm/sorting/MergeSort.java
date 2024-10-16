@@ -1,4 +1,4 @@
-package mainHomework.lv4.algorithm;
+package mainHomework.lv4.utils.algorithm.sorting;
 
 import java.util.ArrayList;
 import java.util.List;

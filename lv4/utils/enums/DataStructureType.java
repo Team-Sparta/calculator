@@ -1,12 +1,12 @@
-package mainHomework.lv4.enums;
+package mainHomework.lv4.utils.enums;
 
-import mainHomework.lv4.collection.*;
+import mainHomework.lv4.utils.collection.*;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public enum DataStructureType {
-    LIST('l', new ArrayListStructure()), SET('S', new HashSetStructure()), LINKEDLIST('L', new LinkedListStructure()), QUEUE('Q', new QueueStructure());
+    LIST('l', new ArrayListStructure()), SET('S', new HashSetStructure()), LINKEDLIST('L', new LinkedListStructure()), QUEUE('Q', new QueueStructure()), MAP('M', new HashMapStructure());
 
     private final char symbol;
     private final DataStructure dataStructure;

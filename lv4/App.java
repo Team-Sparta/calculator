@@ -1,11 +1,10 @@
 package mainHomework.lv4;
 
 import mainHomework.lv4.calculator.Calculator;
-import mainHomework.lv4.enums.DataStructureType;
-import mainHomework.lv4.enums.OperatorType;
-import mainHomework.lv4.exception.BadInputException;
-import mainHomework.lv4.handler.InputHandler;
-import mainHomework.lv4.handler.PostCalculationHandler;
+import mainHomework.lv4.utils.enums.DataStructureType;
+import mainHomework.lv4.calculator.enums.OperatorType;
+import mainHomework.lv4.calculator.handler.InputHandler;
+import mainHomework.lv4.calculator.handler.PostCalculationHandler;
 
 import java.util.InputMismatchException;
 
@@ -16,17 +15,12 @@ public class App {
     private static PostCalculationHandler postCalculationHandler;
 
     public static void main(String[] args) {
-        try {
-            start();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        start();
+
     }
 
-    public static void start() throws BadInputException, InputMismatchException {
-
+    public static void start() throws InputMismatchException {
         init();
-
         while (true) {
             try {
                 Double choice = inputHandler.getChoice("1: 수식 한줄 입력, 2: 숫자/연산자 개별 입력 [1/2]: ");
@@ -58,10 +52,14 @@ public class App {
         }
     }
 
-    private static void init() throws InputMismatchException, BadInputException {
-        System.out.println("결과값들을 저장할 자료구조를 선택하세요.");
-        DataStructureType dataStructureType = inputHandler.getDataStructureInput("l: List, S: Set, L: LinkedList, Q: Queue: ");
-        calculator = new Calculator(dataStructureType);
-        postCalculationHandler = new PostCalculationHandler(calculator, inputHandler);
+    private static void init() {
+        try {
+            System.out.println("결과값들을 저장할 자료구조를 선택하세요.");
+            DataStructureType dataStructureType = inputHandler.getDataStructureInput("l: List, S: Set, L: LinkedList, Q: Queue: ");
+            calculator = new Calculator(dataStructureType);
+            postCalculationHandler = new PostCalculationHandler(calculator, inputHandler);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

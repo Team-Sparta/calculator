@@ -1,11 +1,13 @@
 package mainHomework.lv4.calculator;
 
-import mainHomework.lv4.collection.*;
-import mainHomework.lv4.enums.CalculatorType;
-import mainHomework.lv4.enums.DataStructureType;
-import mainHomework.lv4.enums.OperatorType;
-import mainHomework.lv4.exception.ZeroDivisionException;
-import mainHomework.lv4.exception.BadInputException;
+import mainHomework.lv4.calculator.operator.Operator;
+import mainHomework.lv4.utils.collection.*;
+import mainHomework.lv4.calculator.enums.CalculatorType;
+import mainHomework.lv4.utils.enums.DataStructureType;
+import mainHomework.lv4.calculator.enums.OperatorType;
+import mainHomework.lv4.calculator.exception.ZeroDivisionException;
+import mainHomework.lv4.calculator.exception.BadInputException;
+import mainHomework.lv4.calculator.expression.ExpressionEvaluator;
 
 public class Calculator {
     final static ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
@@ -16,7 +18,13 @@ public class Calculator {
     }
 
     public <T extends Number> double calculate(T firstNumber, T secondNumber, OperatorType operatorType) throws ZeroDivisionException {
-        double result = operatorType.getOperator().operate(firstNumber, secondNumber, CalculatorType.ARITHMETICS);
+        Operator operator = operatorType.getOperator();
+
+        double result = switch (CalculatorType.ARITHMETICS) {
+            case ARITHMETICS -> operator.arithmeticOperate(firstNumber, secondNumber);
+            case BITWISE -> operator.bitwiseOperate(firstNumber, secondNumber);
+        };
+
         this.dataStructure.add(result);
         return result;
     }
@@ -39,3 +47,4 @@ public class Calculator {
         return this.dataStructure;
     }
 }
+

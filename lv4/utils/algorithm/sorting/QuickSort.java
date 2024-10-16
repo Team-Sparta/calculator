@@ -1,6 +1,6 @@
-package mainHomework.lv4.algorithm;
+package mainHomework.lv4.utils.algorithm.sorting;
 
-import mainHomework.lv4.enums.SortedType;
+import mainHomework.lv4.utils.enums.SortedType;
 
 import java.util.List;
 import java.util.ArrayList;
