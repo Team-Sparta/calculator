@@ -3,12 +3,10 @@ package mainHomework.lv4.calculator.expression;
 import java.util.*;
 
 public class PostfixConverter {
-    private static final Map<String, Integer> PRECEDENCE = ExpressionUtils.PRECEDENCE;
 
     public List<String> infixToPostfix(List<String> infix) {
         List<String> postfix = new ArrayList<>();
         Stack<String> stack = new Stack<>();
-
         for (String token : infix) {
             if (ExpressionUtils.isNumber(token)) {
                 postfix.add(token);
@@ -28,7 +26,7 @@ public class PostfixConverter {
                 }
             } else if (ExpressionUtils.isOperator(token)) {
                 while (!stack.isEmpty() && ExpressionUtils.isOperator(stack.peek()) &&
-                        PRECEDENCE.get(stack.peek()) >= PRECEDENCE.get(token)) {
+                        ExpressionUtils.getPriority(stack.peek()) >= ExpressionUtils.getPriority(token)) {
                     postfix.add(stack.pop());
                 }
                 stack.push(token);

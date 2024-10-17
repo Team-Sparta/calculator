@@ -1,5 +1,7 @@
 package mainHomework.lv4.calculator.expression;
 
+import mainHomework.lv4.calculator.exception.BadInputException;
+
 import java.util.List;
 
 public class ExpressionEvaluator {
@@ -10,7 +12,8 @@ public class ExpressionEvaluator {
 
     public double evaluate(String expression) {
         List<String> tokens = tokenizer.tokenize(expression);
-        List<String> postfix = postfixConverter.infixToPostfix(tokens);
+        List<String> postfix = null;
+        postfix = postfixConverter.infixToPostfix(tokens);
         return postfixEvaluator.evaluatePostfix(postfix);
     }
 }

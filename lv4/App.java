@@ -1,6 +1,8 @@
 package mainHomework.lv4;
 
 import mainHomework.lv4.calculator.Calculator;
+import mainHomework.lv4.calculator.exception.BadInputException;
+import mainHomework.lv4.calculator.exception.ZeroDivisionException;
 import mainHomework.lv4.utils.enums.DataStructureType;
 import mainHomework.lv4.calculator.enums.OperatorType;
 import mainHomework.lv4.calculator.handler.InputHandler;
@@ -16,7 +18,6 @@ public class App {
 
     public static void main(String[] args) {
         start();
-
     }
 
     public static void start() throws InputMismatchException {
@@ -46,8 +47,14 @@ public class App {
                     break;
                 }
 
+            } catch (InputMismatchException e) {
+                System.out.println("Input Mismatch: " + e.getMessage());
+            } catch (BadInputException e) {
+                System.out.println("Bad Input: " + e.getMessage());
+            } catch (ZeroDivisionException e) {
+                System.out.println("Zero Division Error: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -55,11 +62,15 @@ public class App {
     private static void init() {
         try {
             System.out.println("결과값들을 저장할 자료구조를 선택하세요.");
-            DataStructureType dataStructureType = inputHandler.getDataStructureInput("l: List, S: Set, L: LinkedList, Q: Queue: ");
+            DataStructureType dataStructureType = inputHandler.getDataStructureInput("l: List, S: Set, L: LinkedList, Q: Queue, M Map: ");
             calculator = new Calculator(dataStructureType);
             postCalculationHandler = new PostCalculationHandler(calculator, inputHandler);
+        } catch (InputMismatchException e) {
+            System.out.println("Input Mismatch: " + e.getMessage());
+        } catch (BadInputException e) {
+            System.out.println("Bad Input: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
         }
     }
 }

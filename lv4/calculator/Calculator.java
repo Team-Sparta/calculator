@@ -38,7 +38,8 @@ public class Calculator {
             result = expressionEvaluator.evaluate(command);
             this.dataStructure.add(result);
         } catch (Exception e) {
-            throw new BadInputException("수식");
+            throw new BadInputException(e.getMessage());
+//            throw new BadInputException("수식");
         }
         return result;
     }

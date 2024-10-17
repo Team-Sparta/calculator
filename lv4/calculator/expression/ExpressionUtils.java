@@ -1,23 +1,31 @@
 package mainHomework.lv4.calculator.expression;
 
+import mainHomework.lv4.calculator.enums.FunctionType;
+import mainHomework.lv4.calculator.enums.OperatorType;
+import mainHomework.lv4.calculator.exception.BadInputException;
+import mainHomework.lv4.calculator.exception.ZeroDivisionException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ExpressionUtils {
 
-    public static final Map<String, Integer> PRECEDENCE = new HashMap<>();
+    //    public static final Map<String, Integer> PRECEDENCE = new HashMap<>();
+    public static final Map<OperatorType, Integer> OPERATOR_PRECEDENCE = new HashMap<>();
+    public static final Map<FunctionType, Integer> FUNCTION_PRECEDENCE = new HashMap<>();
 
     static {
-        PRECEDENCE.put("+", 1);
-        PRECEDENCE.put("-", 1);
-        PRECEDENCE.put("*", 2);
-        PRECEDENCE.put("/", 2);
-        PRECEDENCE.put("^", 3);
-        PRECEDENCE.put("sin", 4);
-        PRECEDENCE.put("cos", 4);
-        PRECEDENCE.put("tan", 4);
-        PRECEDENCE.put("sqrt", 4);
-        PRECEDENCE.put("log", 4);
+        OPERATOR_PRECEDENCE.put(OperatorType.ADDITION, 1);
+        OPERATOR_PRECEDENCE.put(OperatorType.SUBTRACT, 1);
+        OPERATOR_PRECEDENCE.put(OperatorType.MULTIPLY, 2);
+        OPERATOR_PRECEDENCE.put(OperatorType.DIVIDE, 2);
+        OPERATOR_PRECEDENCE.put(OperatorType.MODULUS, 2);
+        OPERATOR_PRECEDENCE.put(OperatorType.POWER, 3);
+        FUNCTION_PRECEDENCE.put(FunctionType.SIN, 4);
+        FUNCTION_PRECEDENCE.put(FunctionType.COS, 4);
+        FUNCTION_PRECEDENCE.put(FunctionType.TAN, 4);
+        FUNCTION_PRECEDENCE.put(FunctionType.SQRT, 4);
+        FUNCTION_PRECEDENCE.put(FunctionType.LOG, 4);
     }
 
     public static boolean isNumber(String token) {
@@ -30,7 +38,23 @@ public class ExpressionUtils {
     }
 
     public static boolean isOperator(String token) {
-        return PRECEDENCE.containsKey(token) && !isFunction(token);
+        return OperatorType.isOperator(token.charAt(0));
+    }
+
+    public static int getPriority(String token) {
+        try {
+            // Check if token is an operator
+            if (isOperator(token)) {
+                return OPERATOR_PRECEDENCE.get(OperatorType.fromChar(token.charAt(0)));
+            }
+            // Check if token is a function
+            if (isFunction(token)) {
+                return FUNCTION_PRECEDENCE.get(FunctionType.fromString(token.toLowerCase()));
+            }
+            throw new IllegalArgumentException("Unknown token: " + token);
+        } catch (BadInputException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static boolean isFunction(String token) {
@@ -38,24 +62,20 @@ public class ExpressionUtils {
     }
 
     public static double applyOperator(String operator, double a, double b) {
-        return switch (operator) {
-            case "+" -> a + b;
-            case "-" -> a - b;
-            case "*" -> a * b;
-            case "/" -> a / b;
-            case "^" -> Math.pow(a, b);
-            default -> throw new IllegalArgumentException("Unknown operator: " + operator);
-        };
+        try {
+            OperatorType operatorType = OperatorType.fromChar(operator.charAt(0));
+            return operatorType.getOperator().arithmeticOperate(a, b);
+        } catch (BadInputException | ZeroDivisionException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static double applyFunction(String function, double a) {
-        return switch (function) {
-            case "sin" -> Math.sin(Math.toRadians(a));
-            case "cos" -> Math.cos(Math.toRadians(a));
-            case "tan" -> Math.tan(Math.toRadians(a));
-            case "sqrt" -> Math.sqrt(a);
-            case "log" -> Math.log10(a);
-            default -> throw new IllegalArgumentException("Unknown function: " + function);
-        };
+        try {
+            FunctionType functionType = FunctionType.fromString(function.toLowerCase());
+            return functionType.getFunction().operate(a);
+        } catch (BadInputException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
