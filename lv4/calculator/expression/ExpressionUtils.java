@@ -10,9 +10,8 @@ import java.util.Map;
 
 public class ExpressionUtils {
 
-    //    public static final Map<String, Integer> PRECEDENCE = new HashMap<>();
-    public static final Map<OperatorType, Integer> OPERATOR_PRECEDENCE = new HashMap<>();
-    public static final Map<FunctionType, Integer> FUNCTION_PRECEDENCE = new HashMap<>();
+    private static final Map<OperatorType, Integer> OPERATOR_PRECEDENCE = new HashMap<>();
+    private static final Map<FunctionType, Integer> FUNCTION_PRECEDENCE = new HashMap<>();
 
     static {
         OPERATOR_PRECEDENCE.put(OperatorType.ADDITION, 1);
@@ -43,11 +42,9 @@ public class ExpressionUtils {
 
     public static int getPriority(String token) {
         try {
-            // Check if token is an operator
             if (isOperator(token)) {
                 return OPERATOR_PRECEDENCE.get(OperatorType.fromChar(token.charAt(0)));
             }
-            // Check if token is a function
             if (isFunction(token)) {
                 return FUNCTION_PRECEDENCE.get(FunctionType.fromString(token.toLowerCase()));
             }

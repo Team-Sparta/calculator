@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class LinkedListStructure extends DataStructure {
+public class LinkedListStructure implements DataStructure {
     private Node head;
     private int size = 0;
 

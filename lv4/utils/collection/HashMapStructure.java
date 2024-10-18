@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class HashMapStructure extends DataStructure {
+public class HashMapStructure implements DataStructure {
     Map<Integer, Double> hashMap = new HashMap<>();
     private int keyCounter = 0;
 

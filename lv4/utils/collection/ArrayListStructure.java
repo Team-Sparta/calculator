@@ -9,7 +9,7 @@ import mainHomework.lv4.utils.enums.SortingAlgorithmType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayListStructure extends DataStructure {
+public class ArrayListStructure implements DataStructure {
 
     List<Double> arrayList = new ArrayList<>();
 

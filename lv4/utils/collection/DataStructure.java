@@ -6,23 +6,23 @@ import mainHomework.lv4.utils.enums.SortingAlgorithmType;
 
 import java.util.List;
 
-public abstract class DataStructure {
+public interface DataStructure {
 
-    public abstract int size();
+    int size();
 
-    public abstract boolean isEmpty();
+    boolean isEmpty();
 
-    public abstract boolean contains(Double value);
+    boolean contains(Double value);
 
-    public abstract void add(Double value);
+    void add(Double value);
 
-    public abstract void removeLastElement();
+    void removeLastElement();
 
-    public abstract void clear();
+    void clear();
 
-    public abstract void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType);
+    void sort(SortedType sortedType, SortingAlgorithmType sortingAlgorithmType);
 
-    public abstract void print();
+    void print();
 
-    public abstract List<Double> getResultsGreaterThan(double threshold);
+    List<Double> getResultsGreaterThan(double threshold);
 }

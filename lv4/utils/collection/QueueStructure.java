@@ -9,7 +9,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-public class QueueStructure extends DataStructure {
+public class QueueStructure implements DataStructure {
     Deque<Double> queue = new ArrayDeque<>();
 
     @Override

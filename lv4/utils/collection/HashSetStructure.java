@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class HashSetStructure extends DataStructure {
+public class HashSetStructure implements DataStructure {
     Set<Double> hashSet = new HashSet<>();
 
     @Override
